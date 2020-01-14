@@ -1,0 +1,32 @@
+{
+  "name": "player",
+  "version": "1.0.0",
+  "description": "A Tone.js starter for making music with WebAudio",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-eslint": "^4.0.2",
+    "gulp-live-server": "0.0.31",
+    "gulp-prettyerror": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.2.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamolei/pianoKeyboard"
+  },
+  "keywords": [
+    "web-audio",
+    "css"
+  ],
+  "dependencies": {}
+}
