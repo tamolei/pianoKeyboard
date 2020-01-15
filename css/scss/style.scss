@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 $white: #ffffff;
-$black: #222222;
+$black: #333333;
 $shadow: #666666;
 
 
@@ -15,41 +15,80 @@ body {
   background: #ebb9e2;
 }
 
-ul {
+#piano {
+  position: relative;
   list-style: none;
   display: flex;
+  width: 420px;
 }
-ul .key {
-  position: relative;
+
+.white-keys, .black-keys {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.white-keys {
+  box-shadow: 0px 1px 4px $shadow;
+}
+
+.black-keys {
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.group-2 {
+  margin: 0 0 0 37.5px;
+  width:105px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.group-2 .black-key:first-child,
+.group-3 .black-key:first-child {
+  margin: 0
+}
+
+.group-3 {
+  margin: 0 0 0 75px;
+  width: 165px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.white-keys .key {
   width: 60px;
   height: 180px;
   border: 1px solid $shadow;
   border-right: none;
   background: $white;
   border-radius: 0 0 5px 5px;
-  box-shadow: 0px 1px 4px $shadow;
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   padding-bottom: 10px;
 }
-ul .key:last-child {
+.white-keys .key:last-child {
   border-right: 1px solid $shadow;
 }
-ul .black-key {
-  position: absolute;
+.white-keys>.key:hover {
+  background: #f0f0f0;
+}
+.black-keys .black-key {
   top: -1px;
-  left: 37.5px;
   width: 45px;
   height: 120px;
   background: $black;
   border-radius: 0 0 5px 5px;
   box-shadow: 0px 1px 4px $shadow;
-  z-index: 999;
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   padding-bottom: 10px;
+  margin: 0 0 0 15px;
+}
+.black-keys .black-key:hover {
+  background: #000;
+  cursor: pointer;
 }
 
