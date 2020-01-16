@@ -9,33 +9,65 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./build/css/style.min.css">
   <script src="https://unpkg.com/tone"></script>
-  <script src="./build/js/piano.min.js" defer></script>
+  <script src="./js/piano.js" defer></script>
 </head>
 
 <body>
-  <div id="piano">
-    <div class="black-keys">
-      <div class="group-2">
-        <div data-note="C#4" class="black-key"></div>
-        <div data-note="D#4" class="black-key"></div>
+  <div class="wrapper">
+    <div class="piano">
+      <div id="piano1stOctave">
+        <div class="black-keys">
+          <div class="group-2">
+            <div data-note="C#4" class="black-key"></div>
+            <div data-note="D#4" class="black-key"></div>
+          </div>
+          <div class="group-3">
+            <div data-note="F#4" class="black-key"></div>
+            <div data-note="G#4" class="black-key"></div>
+            <div data-note="A#4" class="black-key"></div>
+          </div>
+        </div>
+        <div class="white-keys">
+          <div data-note="C4" class="key"></div>
+          <div data-note="D4" class="key"></div>    
+          <div data-note="E4" class="key"></div>
+          <div data-note="F4" class="key"></div>
+          <div data-note="G4" class="key"></div>
+          <div data-note="A4" class="key"></div>
+          <div data-note="B4" class="key"></div>
+        </div>
       </div>
-      <div class="group-3">
-        <div data-note="F#4" class="black-key"></div>
-        <div data-note="G#4" class="black-key"></div>
-        <div data-note="A#4" class="black-key"></div>
+      <div id="piano2ndOctave">
+        <div class="black-keys">
+          <div class="group-2">
+            <div data-note="C#5" class="black-key"></div>
+            <div data-note="D#5" class="black-key"></div>
+          </div>
+          <div class="group-3">
+            <div data-note="F#5" class="black-key"></div>
+            <div data-note="G#5" class="black-key"></div>
+            <div data-note="A#5" class="black-key"></div>
+          </div>
+        </div>
+        <div class="white-keys">
+          <div data-note="C5" class="key"></div>
+          <div data-note="D5" class="key"></div>    
+          <div data-note="E5" class="key"></div>
+          <div data-note="F5" class="key"></div>
+          <div data-note="G5" class="key"></div>
+          <div data-note="A5" class="key"></div>
+          <div data-note="B5" class="key"></div>
+        </div>
       </div>
     </div>
-    <div class="white-keys">
-      <div data-note="C4" class="key"></div>
-      <div data-note="D4" class="key"></div>    
-      <div data-note="E4" class="key"></div>
-      <div data-note="F4" class="key"></div>
-      <div data-note="G4" class="key"></div>
-      <div data-note="A4" class="key"></div>
-      <div data-note="B4" class="key"></div>
+
+    <div class="controls">
+      <button id="rec"><i class="fa fa-record-vinyl"></i></button>
+      <button id="play"><i class="fa fa-play"></i></button>
+      <button id="pause"><i class="fa fa-pause"></i></button>
+      <button id="stop"><i class="fa fa-stop"></i></button>
     </div>
   </div>
-  
 </body>
 
 </html>

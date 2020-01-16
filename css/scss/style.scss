@@ -1,10 +1,20 @@
+$fa-font-path: '../../public/webfonts';
+@import './node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import './node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+@import './node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+@import './node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import './node_modules/@fortawesome/fontawesome-free/scss/v4-shims.scss';
+
 * {
   box-sizing: border-box;
 }
+
 $white: #ffffff;
 $black: #333333;
 $shadow: #666666;
-
+$bg: #ebb9e2;
+$bg-darker:#cf8ec3;
+$bg-lighter: #f7d5f0;
 
 body {
   font-family: sans-serif;
@@ -12,10 +22,23 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #ebb9e2;
+  background: $bg;
 }
 
-#piano {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.piano {
+  display: flex;
+  padding: 10px;
+  background: $bg-darker;
+  border-radius: 5px;
+}
+
+#piano1stOctave, 
+#piano2ndOctave {
   position: relative;
   list-style: none;
   display: flex;
@@ -27,10 +50,6 @@ body {
   position: absolute;
   display: flex;
   justify-content: center;
-}
-
-.white-keys {
-  box-shadow: 0px 1px 4px $shadow;
 }
 
 .black-keys {
@@ -92,4 +111,32 @@ body {
   background: #000;
   cursor: pointer;
 }
+.controls {
+  margin: 50px 0 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.controls .fa {
+  font-size: 16px;
+}
+
+.controls button {
+  margin: 0 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  border: 2px solid $bg-darker;
+  background: $bg-lighter;
+  color: $bg-darker;
+  font-size: 25px;
+  text-align: center;
+}
+
+.controls button:hover {
+  background: $bg-darker;
+  color: $bg;
+  cursor: pointer;
+}
+
 

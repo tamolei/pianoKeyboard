@@ -1,14 +1,27 @@
+import fontawesome from '../node_modules/@fortawesome/fontawesome'
+import faFreeSolid from '../node_modules/@fortawesome/fontawesome-free-solid'
+
+fontawesome.library.add(faFreeSolid)
+fontawesome.dom.i2svg()
+
 const synth = new Tone.Synth();
 synth.oscillator.type = 'sine';
 synth.toMaster();
 
-const piano = document.getElementById('piano');
+const piano1stOctave = document.getElementById('piano1stOctave');
+const piano2ndOctave = document.getElementById('piano2ndOctave');
 
-piano.addEventListener('mousedown', e => {
+piano1stOctave.addEventListener('mousedown', e => {
+    synth.triggerAttack(e.target.dataset.note);
+});
+piano2ndOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
 });
 
-piano.addEventListener('mouseup', e => {
+piano1stOctave.addEventListener('mouseup', e => {
+    synth.triggerRelease();
+});
+piano2ndOctave.addEventListener('mouseup', e => {
     synth.triggerRelease();
 });
 
@@ -35,7 +48,7 @@ document.addEventListener('keydown', e => {
         case 'k':
             return synth.triggerAttack('A4');
         case 'o':
-            return synth.triggerAttack('A#4');
+            return synth.triggerAtgtack('A#4');
         case 'l':
             return synth.triggerAttack('B4');
         default:

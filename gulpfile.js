@@ -17,11 +17,6 @@ gulp.task('sass', function(done) {
     .src('./css/scss/*.scss', { sourcemaps: true })
     .pipe(prettyError())
     .pipe(sass())
-    .pipe(
-      autoprefixer({
-        browsers: ['last 2 versions']
-      })
-    )
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./build/css'))
     .pipe(cssnano())
@@ -51,7 +46,7 @@ gulp.task(
       .src('./js/*.js')
       .pipe(
         babel({
-          presets: ['env']
+          presets: ['@babel/preset-env']
         })
       )
       .pipe(uglify())
@@ -76,9 +71,19 @@ gulp.task('browser-sync', function() {
     .on('change', browserSync.reload);
 });
 
+gulp.task(
+  'fontAwesome', function() {
+   gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*')
+    .pipe(gulp.dest('public/webfonts'))
+});
+
 gulp.task('watch', function() {
   gulp.watch('./js/*.js', gulp.series('scripts'));
   gulp.watch('./css/scss/**/*.scss', gulp.series('sass'));
 });
 
-gulp.task('default', gulp.parallel('browser-sync', 'watch'));
+gulp.task('default', gulp.parallel(
+    'browser-sync', 
+    'watch', 
+    'fontAwesome'
+));
