@@ -15,6 +15,7 @@ $shadow: #666666;
 $bg: #ebb9e2;
 $bg-darker:#cf8ec3;
 $bg-lighter: #f7d5f0;
+$bg-button-active: #9f6094;
 
 body {
   font-family: sans-serif;
@@ -133,9 +134,29 @@ body {
   text-align: center;
 }
 
-.controls button:hover {
+.controls .rec-button-pressed,
+.controls .rec-button-pressed:hover
+ {
+  background: #cc3636;
+  border: 2px solid #cc3636;
+  color: #f0afaf;
+
+}
+
+.controls button:hover:not([disabled]) {
   background: $bg-darker;
   color: $bg;
+  cursor: pointer;
+}
+
+.controls button[disabled] {
+  opacity: 0.5;
+}
+
+.controls button:active {
+  background: $bg-button-active;
+  color: $bg;
+  border: 2px solid $bg-button-active;
   cursor: pointer;
 }
 

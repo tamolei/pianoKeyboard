@@ -1,8 +1,3 @@
-import fontawesome from '../node_modules/@fortawesome/fontawesome'
-import faFreeSolid from '../node_modules/@fortawesome/fontawesome-free-solid'
-
-fontawesome.library.add(faFreeSolid)
-fontawesome.dom.i2svg()
 
 const synth = new Tone.Synth();
 synth.oscillator.type = 'sine';
@@ -10,9 +5,23 @@ synth.toMaster();
 
 const piano1stOctave = document.getElementById('piano1stOctave');
 const piano2ndOctave = document.getElementById('piano2ndOctave');
+const recButton = document.getElementById('rec');
+const playButton = document.getElementById('play');
+let recorded = [];
+let recording = false;
+let time = 0;
 
 piano1stOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
+    if (recording) {
+        
+        recorded.push({
+            time: time,
+            note: e.target.dataset.note,
+            dur: '8n'
+        });
+        time++;
+    }
 });
 piano2ndOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
@@ -73,4 +82,23 @@ document.addEventListener('keyup', e => {
         synth.triggerRelease(); 
     }
 });
+
+function record() {
+    recording = !recording;
+    recButton.classList.toggle('rec-button-pressed');
+    playButton.toggleAttribute('disabled')
+}
+
+
+
+function playRecord() {
+    console.log(recorded)
+    let part = new Tone.Part(function(time, event) {
+        console.log(event)
+        console.log(time)
+        synth.triggerAttackRelease(event.note, event.dur, time)
+    }, recorded);
+    part.start(0);
+    Tone.Transport.toggle();
+}
 
