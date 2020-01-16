@@ -14,7 +14,6 @@ let time = 0;
 piano1stOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
     if (recording) {
-        
         recorded.push({
             time: time,
             note: e.target.dataset.note,
@@ -84,9 +83,11 @@ document.addEventListener('keyup', e => {
 });
 
 function record() {
+    if (recorded.length > 0) {
+        playButton.toggleAttribute('disabled');
+    }
     recording = !recording;
     recButton.classList.toggle('rec-button-pressed');
-    playButton.toggleAttribute('disabled')
 }
 
 

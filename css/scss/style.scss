@@ -135,17 +135,16 @@ body {
 }
 
 .controls .rec-button-pressed,
-.controls .rec-button-pressed:hover
- {
+.controls .rec-button-pressed:hover {
   background: #cc3636;
   border: 2px solid #cc3636;
   color: #f0afaf;
-
 }
 
 .controls button:hover:not([disabled]) {
   background: $bg-darker;
   color: $bg;
+  border: 2px $bg-darker;
   cursor: pointer;
 }
 
