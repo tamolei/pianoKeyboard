@@ -150,9 +150,10 @@ body {
 
 .controls button[disabled] {
   opacity: 0.5;
+  cursor: default;
 }
 
-.controls button:active {
+.controls button:active:not([disabled]) {
   background: $bg-button-active;
   color: $bg;
   border: 2px solid $bg-button-active;

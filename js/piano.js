@@ -7,9 +7,11 @@ const piano1stOctave = document.getElementById('piano1stOctave');
 const piano2ndOctave = document.getElementById('piano2ndOctave');
 const recButton = document.getElementById('rec');
 const playButton = document.getElementById('play');
+const pauseButton = document.getElementById('pause');
+const stopButton = document.getElementById('stop');
 let recorded = [];
 let recording = false;
-let time = 0;
+let time = 0.5;
 
 piano1stOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
@@ -19,11 +21,19 @@ piano1stOctave.addEventListener('mousedown', e => {
             note: e.target.dataset.note,
             dur: '8n'
         });
-        time++;
+        time += 0.5;
     }
 });
 piano2ndOctave.addEventListener('mousedown', e => {
     synth.triggerAttack(e.target.dataset.note);
+    if (recording) {
+        recorded.push({
+            time: time,
+            note: e.target.dataset.note,
+            dur: '8n'
+        });
+        time += 0.5;
+    }
 });
 
 piano1stOctave.addEventListener('mouseup', e => {
@@ -90,16 +100,33 @@ function record() {
     recButton.classList.toggle('rec-button-pressed');
 }
 
-
-
-function playRecord() {
-    console.log(recorded)
+function play() {
+    pauseButton.removeAttribute('disabled');
+    stopButton.removeAttribute('disabled');
+    playButton.setAttribute('disabled', '');
+    let playLength = recorded.length - 1;
     let part = new Tone.Part(function(time, event) {
-        console.log(event)
-        console.log(time)
-        synth.triggerAttackRelease(event.note, event.dur, time)
+        synth.triggerAttackRelease(event.note, event.dur, time);
+        let stopOnEnd = recorded[playLength] === event;
+        if (stopOnEnd) {
+            pauseButton.setAttribute('disabled', '');
+            stopButton.setAttribute('disabled', '');
+            playButton.removeAttribute('disabled');
+        }
     }, recorded);
-    part.start(0);
-    Tone.Transport.toggle();
+    part.start();
+    Tone.Transport.start();
+}
+
+function pause() {
+    Tone.Transport.pause();
+    pauseButton.setAttribute('disabled', '');
+    stopButton.setAttribute('disabled', '');
+}
+
+function stop() {
+    Tone.Transport.stop();
+    pauseButton.setAttribute('disabled', '');
+    stopButton.setAttribute('disabled', '');
 }
 
